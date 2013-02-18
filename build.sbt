@@ -17,3 +17,6 @@ libraryDependencies += "org.scala-lang" % "jline" % "2.9.2" intransitive()
 //https://github.com/lift/framework/tree/master/core/json
 libraryDependencies += "net.liftweb" %% "lift-json" % "2.5-M1"
 
+scalacOptions += "-deprecation"
+
+scalacOptions += "-unchecked"

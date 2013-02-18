@@ -3,18 +3,20 @@ package tum.in.net.bacnet
 import com.serotonin.bacnet4j.`type`.enumerated._
 import com.serotonin.bacnet4j.LocalDevice
 
-class MySlaveDevice(broadcastAddress: String, name: String = "corny's personal slave", randomValues: Boolean = false)
+class MySlaveDevice(broadcastAddress: String, name: String = null, randomValues: Boolean = false)
 {
   val random = if (randomValues) new scala.util.Random() else null
   
   // create random values
   val deviceId = if (randomValues) random.nextInt(4000000) else MySlaveDevice.deviceId
-  val deviceName = if (randomValues){
-    val x1 = MySlaveDevice.deviceNames1(random.nextInt(MySlaveDevice.deviceNames1.length))
-    val x2 = MySlaveDevice.deviceNames2(random.nextInt(MySlaveDevice.deviceNames2.length))
-    val x3 = MySlaveDevice.deviceNames3(random.nextInt(MySlaveDevice.deviceNames3.length))
-    x1+"'s "+x2+" "+x3
-  	} else name
+  val deviceName = if (!(name eq null)){
+	  name
+  	}else if (randomValues){
+  	  val x1 = MySlaveDevice.deviceNames1(random.nextInt(MySlaveDevice.deviceNames1.length))
+  	  val x2 = MySlaveDevice.deviceNames2(random.nextInt(MySlaveDevice.deviceNames2.length))
+  	  val x3 = MySlaveDevice.deviceNames3(random.nextInt(MySlaveDevice.deviceNames3.length))
+  	  x1+"'s "+x2+" "+x3
+  	} else "corny's personal slave"
   val analogueIO = if (randomValues){
     val numIN = 1 max random.nextInt(4)
     val numOUT = 1 max random.nextInt(3)

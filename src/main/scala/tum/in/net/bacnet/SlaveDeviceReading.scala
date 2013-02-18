@@ -14,7 +14,8 @@ import scala.actors.TIMEOUT
 
 class SlaveDeviceReading (
     val localDevice: MyLocalDevice,
-    val otherDevices: List[String]
+    val otherDevices: List[String],
+    abortOnNoRemotes: Boolean = true
     ) extends Actor
 {
   val random = new scala.util.Random()
@@ -72,7 +73,16 @@ class SlaveDeviceReading (
 		println("Registered remote devices: "+remoteDevices.map(s => "\t("+s.getInstanceNumber()+", "+
 		    s.getAddress().toIpPortString()+", "+s.getName()+")\n").mkString)
 		
-		assert(remoteDevices.length > 0, "found at least one remote device")
+		try{
+		  assert(remoteDevices.length > 0, "found at least one remote device")
+		} catch {
+	      case e: java.lang.AssertionError => 
+	        println("Error: "+e)
+	        if (abortOnNoRemotes)
+	          throw e
+	        else 
+	          println("continue")
+		}
 
 		// Get extended information for all remote devices.
 		for (d <- remoteDevices) {
