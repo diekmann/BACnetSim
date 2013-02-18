@@ -64,6 +64,10 @@ class MyReader(val localDevice: MyLocalDevice = new MyLocalDevice(
     	localDevice.initialize()
     }
     localReader.start()
+    // TODO
+    // we could pass abortOnNoRemotes=true and catch the assertion error, if no remote devices are found
+    // retry every X seconds
+    // although, this is better done in the SlaveDeviceReading's act method act
   }
 }
 
