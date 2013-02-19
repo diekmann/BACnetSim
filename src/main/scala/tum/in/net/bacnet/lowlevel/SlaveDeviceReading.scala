@@ -1,4 +1,4 @@
-package tum.in.net.bacnet
+package tum.in.net.bacnet.lowlevel
 
 import com.serotonin.bacnet4j._
 import com.serotonin.bacnet4j.`type`.constructed._
@@ -11,7 +11,19 @@ import com.serotonin.bacnet4j.obj._
 import scala.actors.Actor
 import scala.actors.Actor._
 import scala.actors.TIMEOUT
+import tum.in.net.bacnet.lowlevel.device.BACListeneriAmReceived
+import tum.in.net.bacnet.lowlevel.device.MyLocalDevice
+import scala.collection.JavaConversions.asScalaBuffer
+import scala.collection.JavaConversions.iterableAsScalaIterable
+import scala.collection.JavaConversions.mapAsScalaMap
+import scala.collection.JavaConversions.seqAsJavaList
 
+/**
+ * Add to BACnet device `localDevice` more features
+ * Read/write/query values from other BACnet devices
+ * @author corny
+ *
+ */
 class SlaveDeviceReading (
     val localDevice: MyLocalDevice,
     val otherDevices: List[String],

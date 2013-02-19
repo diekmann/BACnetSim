@@ -1,22 +1,26 @@
-package tum.in.net.bacnet
+package tum.in.net.bacnet.lowlevel
 
 import com.serotonin.bacnet4j._
 import com.serotonin.bacnet4j.`type`.constructed._
 import com.serotonin.bacnet4j.`type`.primitive
 import com.serotonin.bacnet4j.`type`.enumerated._
 import com.serotonin.bacnet4j.`type`.notificationParameters._
-import com.serotonin.bacnet4j.`type`.Encodable
 import com.serotonin.bacnet4j.service.confirmed.ReinitializeDeviceRequest._
 import com.serotonin.bacnet4j.obj._
-
 import scala.actors.Actor
 import scala.actors.Actor._
+import tum.in.net.bacnet.lowlevel.device.MyLocalDevice
 
 abstract sealed class IOType
 case object IOTypeInput extends IOType
 case object IOTypeOutput extends IOType
 
 
+/**
+ * Add to BACnet device `localDevice` Input/Ouput values
+ * @author corny
+ *
+ */
 class SlaveDeviceIO(
     val localDevice: MyLocalDevice,
     ConfiguredAnalogueIO: List[(IOType, String, EngineeringUnits)],

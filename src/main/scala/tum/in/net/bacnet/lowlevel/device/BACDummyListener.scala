@@ -1,4 +1,4 @@
-package tum.in.net.bacnet
+package tum.in.net.bacnet.lowlevel.device
 
 import com.serotonin.bacnet4j._
 import com.serotonin.bacnet4j.`type`.constructed._
@@ -8,7 +8,6 @@ import com.serotonin.bacnet4j.`type`.notificationParameters._
 import com.serotonin.bacnet4j.`type`.Encodable
 import com.serotonin.bacnet4j.service.confirmed.ReinitializeDeviceRequest._
 import com.serotonin.bacnet4j.obj._
-
 
 
 abstract sealed trait BACListenerMessage

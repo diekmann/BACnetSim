@@ -1,8 +1,19 @@
-package tum.in.net.bacnet
+package tum.in.net.bacnet.deviceFactory
 
 import com.serotonin.bacnet4j.`type`.enumerated._
-import com.serotonin.bacnet4j.LocalDevice
+import tum.in.net.bacnet.lowlevel.device.MyLocalDevice
+import tum.in.net.bacnet.lowlevel.SlaveDeviceIO
+import tum.in.net.bacnet.lowlevel.IOTypeOutput
+import tum.in.net.bacnet.lowlevel.IOTypeInput
+import tum.in.net.bacnet.lowlevel.IOType
 
+
+/**
+ * Generic Class to instantiate a BACnet device
+ * with I/O
+ * @author corny
+ *
+ */
 class MySlaveDevice(broadcastAddress: String, name: String = null, randomValues: Boolean = false)
 {
   val random = if (randomValues) new scala.util.Random() else null

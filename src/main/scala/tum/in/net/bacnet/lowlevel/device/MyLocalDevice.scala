@@ -1,4 +1,4 @@
-package tum.in.net.bacnet
+package tum.in.net.bacnet.lowlevel.device
 
 
 import com.serotonin.bacnet4j._
@@ -9,7 +9,16 @@ import com.serotonin.bacnet4j.`type`.notificationParameters._
 import com.serotonin.bacnet4j.`type`.Encodable
 import com.serotonin.bacnet4j.service.confirmed.ReinitializeDeviceRequest._
 import com.serotonin.bacnet4j.obj._
+import scala.Array.canBuildFrom
+import scala.collection.JavaConversions.asScalaBuffer
 
+
+/**
+ * My local BACnet device
+ * Other classes in the lowlevel package extend its functionality
+ * @author corny
+ *
+ */
 class MyLocalDevice(val broadcastAddress: String,
     val name: String,
     val deviceId: Int, // make sure this value is unique!
