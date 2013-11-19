@@ -29,3 +29,7 @@ A scala BACnet simulator using bacnet4J
 Only one simulator instance per host. You need multiple (virtual) machines to set up a BACnet test network.
 
 Happy Hacking
+
+### Warning:
+This hacky simulator uses direct addressing and not the default BACnet broadcasts
+
